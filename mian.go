@@ -1,37 +1,46 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-func peso_do_usuario(){
-	var peso float64
-	var libras float64 
-	fmt.Println("Digite aqui seu peso: ")
-	fmt.Scanln(&peso)
-	libras = 2.20462
-	x := (libras * peso)
-	fmt.Println("Seu peso em libras aproximado é: ", x)
+// ConvertePeso transforma o peso em quilogramas para libras.
+func ConvertePeso() {
+	var pesoEmKg float64
+
+	fmt.Println("Digite aqui o seu peso em quilogramas: ")
+	_, err := fmt.Scanln(&pesoEmKg)
+	if err != nil {
+		fmt.Println("Entrada inválida! Por favor, digite um número válido.")
+		return
+	}
+
+	const librasPorKg = 2.20462
+	pesoEmLb := librasPorKg * pesoEmKg
+
+	fmt.Printf("Seu peso em libras é de: %.2f lbs\n", pesoEmLb)
 }
 
-func tranformando_celsius_em_fharenheit_e_kelvin(){
-	var temperaturacelsius float64
-	var temperaturafharenheit float64
-	fmt.Println("Digite a temperatura: ")
-	fmt.Scanln(&temperaturacelsius)
-	temperaturafharenheit = 1.8
-	y := (temperaturacelsius * temperaturafharenheit)
-	fmt.Println("A temperatura em Fharenheit é: ", y+32)
-	fmt.Println("A temperatura em Kelvin é: ", temperaturacelsius + 273)
-	
+// ConverteTemperatura transforma a temperatura em graus Celsius para graus Fahrenheit e Kelvin.
+func ConverteTemperatura() {
+	var temperaturaEmCelsius float64
+
+	fmt.Println("Digite a temperatura em graus Celsius: ")
+	_, err := fmt.Scanln(&temperaturaEmCelsius)
+	if err != nil {
+		fmt.Println("Entrada inválida! Por favor, digite um número válido.")
+		return
+	}
+
+	const fatorDeConversaoFahrenheit = 1.8
+	temperaturaEmFahrenheit := fatorDeConversaoFahrenheit*temperaturaEmCelsius + 32
+	temperaturaEmKelvin := temperaturaEmCelsius + 273.15
+
+	fmt.Printf("A temperatura em Fahrenheit é de: %.2f °F\n", temperaturaEmFahrenheit)
+	fmt.Printf("A temperatura em Kelvin é de: %.2f K\n", temperaturaEmKelvin)
 }
 
-
-
-
-
-
-
-
-func main(){
-	peso_do_usuario()
-	tranformando_celsius_em_fharenheit_e_kelvin()
+func main() {
+	ConvertePeso()
+	ConverteTemperatura()
 }
